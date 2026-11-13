@@ -1,0 +1,417 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>App Clube Studio 8</title>
+<meta name="description" content="O app da Clube Studio 8: agenda, clientes, limpeza, compras e segurança da barbearia na palma da mão. Baixe o APK para Android.">
+<meta property="og:title" content="App Clube Studio 8">
+<meta property="og:description" content="Agenda, clientes, limpeza, compras e segurança da barbearia num só app. Grátis para Android.">
+<meta property="og:image" content="icon.png">
+<meta name="theme-color" content="#0E0E0E">
+<link rel="icon" href="favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --lime:#C4DC1E; --lime-dark:#9DB012; --lime-soft:rgba(196,220,30,.14); --on-lime:#111;
+    --bg:#0E0E0E; --surface:#1A1A1A; --surface2:#242424; --border:#2F2F2F;
+    --text:#F4F4F2; --muted:#9C9C98; --faint:#6B6B68;
+    --ok:#5BD66F; --danger:#FF5D5D; --warn:#FFB23F; --info:#6CB8FF; --whats:#25D366;
+    --display:'Bebas Neue',Impact,sans-serif; --body:'Montserrat',system-ui,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{background:var(--bg);color:var(--text);font-family:var(--body);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  a{color:inherit}
+  .wrap{max-width:1120px;margin:0 auto;padding:0 20px}
+  .lime{color:var(--lime)}
+  h1,h2,h3{font-family:var(--display);font-weight:400;letter-spacing:.02em;line-height:1}
+
+  /* Nav */
+  nav{position:sticky;top:0;z-index:20;background:rgba(14,14,14,.86);backdrop-filter:blur(10px);border-bottom:1px solid var(--border)}
+  nav .wrap{display:flex;align-items:center;justify-content:space-between;height:64px;gap:12px}
+  .brand{display:flex;align-items:center;gap:10px;text-decoration:none;font-family:var(--display);font-size:26px;letter-spacing:.04em}
+  .brand img{width:36px;height:36px;border-radius:8px}
+  .nav-links{display:flex;gap:28px;font-size:14px;font-weight:600}
+  .nav-links a{text-decoration:none;color:var(--muted)}
+  .nav-links a:hover{color:var(--text)}
+
+  /* Buttons */
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;font-family:var(--body);font-weight:800;text-decoration:none;border-radius:14px;transition:transform .15s,box-shadow .15s,background .15s;cursor:pointer;border:0}
+  .btn-primary{background:var(--lime);color:var(--on-lime);padding:18px 30px;font-size:17px;box-shadow:0 10px 30px rgba(196,220,30,.25)}
+  .btn-primary:hover{transform:translateY(-2px);box-shadow:0 14px 40px rgba(196,220,30,.35)}
+  .btn-sm{padding:10px 18px;font-size:14px;border-radius:10px;box-shadow:none}
+  .btn svg{flex-shrink:0}
+  .btn-meta{display:block;font-size:13px;color:var(--muted);margin-top:12px}
+
+  /* Hero */
+  .hero{position:relative;padding:72px 0 96px;overflow:hidden}
+  .hero::before{content:"8";position:absolute;right:-6%;top:-12%;font-family:var(--display);font-size:min(90vw,900px);line-height:1;color:var(--lime);opacity:.04;pointer-events:none}
+  .hero .wrap{display:grid;grid-template-columns:1.1fr .9fr;gap:56px;align-items:center;position:relative}
+  .tag{display:inline-flex;align-items:center;gap:8px;background:var(--lime-soft);color:var(--lime);font-size:13px;font-weight:700;padding:7px 14px;border-radius:99px;margin-bottom:22px;text-transform:uppercase;letter-spacing:.06em}
+  .tag .dot{width:7px;height:7px;border-radius:50%;background:var(--lime)}
+  .hero h1{font-size:clamp(56px,8.5vw,108px);margin-bottom:22px}
+  .hero h1 .bar{display:inline-block;border-bottom:8px solid var(--lime);padding-bottom:2px}
+  .hero p.lead{font-size:clamp(16px,2vw,19px);color:var(--muted);max-width:520px;margin-bottom:34px}
+  .hero p.lead strong{color:var(--text)}
+  .hero-points{display:flex;flex-wrap:wrap;gap:10px 22px;margin-top:30px;font-size:14px;font-weight:600;color:var(--muted)}
+  .hero-points span{display:flex;align-items:center;gap:8px}
+  .hero-points svg{color:var(--lime)}
+
+  /* Phone mockup */
+  .phone{width:300px;margin:0 auto;background:#000;border-radius:44px;padding:12px;border:1px solid #333;box-shadow:0 40px 80px rgba(0,0,0,.6),0 0 0 6px #1b1b1b,0 0 120px rgba(196,220,30,.12);transform:rotate(2deg)}
+  .screen{background:var(--bg);border-radius:34px;overflow:hidden;height:600px;display:flex;flex-direction:column;font-size:12px}
+  .s-head{padding:30px 16px 12px;display:flex;align-items:center;gap:10px;background:var(--bg)}
+  .s-logo{width:34px;height:34px;border-radius:10px;background:var(--lime);display:grid;place-items:center;color:var(--on-lime)}
+  .s-brand{font-family:var(--display);font-size:18px;letter-spacing:.04em;line-height:1}
+  .s-title{font-weight:700;font-size:15px;line-height:1.2}
+  .s-strip{height:3px;background:var(--lime)}
+  .s-days{display:flex;gap:6px;padding:12px 12px 6px}
+  .s-day{flex:1;background:var(--surface);border:1px solid var(--border);border-radius:10px;text-align:center;padding:6px 0;font-size:10px;color:var(--muted);font-weight:600}
+  .s-day b{display:block;font-family:var(--display);font-size:20px;font-weight:400;color:var(--text);line-height:1.1}
+  .s-day.on{background:var(--lime);border-color:var(--lime);color:var(--on-lime)}
+  .s-day.on b{color:var(--on-lime)}
+  .s-list{flex:1;padding:8px 12px;display:flex;flex-direction:column;gap:8px;overflow:hidden}
+  .s-item{display:flex;align-items:center;gap:10px;background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:10px}
+  .s-time{font-family:var(--display);font-size:20px;color:var(--lime);width:46px}
+  .s-name{font-weight:700;font-size:12.5px;flex:1;line-height:1.3}
+  .s-name small{display:block;font-weight:500;color:var(--muted);font-size:10.5px}
+  .chip{font-size:9.5px;font-weight:700;padding:3px 8px;border-radius:99px}
+  .chip.ok{background:rgba(91,214,111,.14);color:var(--ok)}
+  .chip.wa{background:rgba(37,211,102,.14);color:var(--whats)}
+  .chip.free{background:rgba(255,178,63,.14);color:var(--warn)}
+  .s-menu{display:flex;justify-content:space-around;border-top:1px solid var(--border);padding:10px 6px 16px;background:#141414}
+  .s-menu div{display:flex;flex-direction:column;align-items:center;gap:3px;font-size:9px;font-weight:600;color:var(--faint)}
+  .s-menu div.on{color:var(--lime)}
+
+  /* Sections */
+  section{padding:96px 0}
+  .sec-head{max-width:640px;margin-bottom:52px}
+  .eyebrow{font-size:13px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--lime);margin-bottom:12px}
+  .sec-head h2{font-size:clamp(42px,6vw,68px);margin-bottom:16px}
+  .sec-head p{color:var(--muted);font-size:17px}
+
+  /* Problem strip */
+  .stats{border-top:1px solid var(--border);border-bottom:1px solid var(--border);background:var(--surface);padding:0}
+  .stats .wrap{display:grid;grid-template-columns:repeat(4,1fr)}
+  .stat{padding:30px 20px;border-right:1px solid var(--border)}
+  .stat:last-child{border-right:0}
+  .stat b{display:block;font-family:var(--display);font-size:44px;font-weight:400;color:var(--lime);line-height:1}
+  .stat span{font-size:14px;color:var(--muted);font-weight:500}
+
+  /* Features */
+  .features{display:grid;grid-template-columns:repeat(6,1fr);gap:18px}
+  .feat{grid-column:span 2;background:var(--surface);border:1px solid var(--border);border-radius:20px;padding:28px;position:relative;overflow:hidden;transition:border-color .2s,transform .2s}
+  .feat:hover{border-color:var(--lime);transform:translateY(-3px)}
+  .feat.wide{grid-column:span 3}
+  .feat .ico{width:52px;height:52px;border-radius:14px;background:var(--lime-soft);color:var(--lime);display:grid;place-items:center;margin-bottom:20px}
+  .feat h3{font-size:34px;margin-bottom:10px}
+  .feat p{color:var(--muted);font-size:15px}
+  .feat ul{list-style:none;margin-top:16px;display:flex;flex-direction:column;gap:8px}
+  .feat li{font-size:14px;display:flex;gap:10px;align-items:flex-start}
+  .feat li::before{content:"";flex-shrink:0;width:6px;height:6px;margin-top:8px;border-radius:2px;background:var(--lime)}
+
+  /* Steps */
+  .steps-bg{background:var(--surface);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+  .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;counter-reset:s}
+  .step{background:var(--bg);border:1px solid var(--border);border-radius:20px;padding:26px;position:relative}
+  .step::before{counter-increment:s;content:counter(s);font-family:var(--display);font-size:64px;line-height:1;color:var(--lime);display:block;margin-bottom:10px}
+  .step h3{font-family:var(--body);font-weight:800;font-size:17px;letter-spacing:0;line-height:1.3;margin-bottom:8px}
+  .step p{color:var(--muted);font-size:14px}
+  .note{margin-top:28px;display:flex;gap:14px;align-items:flex-start;background:rgba(108,184,255,.08);border:1px solid rgba(108,184,255,.25);border-radius:16px;padding:18px 20px;font-size:14px;color:var(--muted)}
+  .note svg{color:var(--info);flex-shrink:0;margin-top:2px}
+  .note strong{color:var(--text)}
+
+  /* Privacy */
+  .privacy{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
+  .privacy .big{font-family:var(--display);font-size:clamp(64px,10vw,140px);line-height:.9;color:var(--lime)}
+  .privacy .big span{color:var(--text);display:block}
+  .checks{display:flex;flex-direction:column;gap:18px}
+  .check{display:flex;gap:16px;align-items:flex-start}
+  .check .ico{width:42px;height:42px;flex-shrink:0;border-radius:12px;background:var(--lime-soft);color:var(--lime);display:grid;place-items:center}
+  .check b{display:block;font-size:16px;margin-bottom:2px}
+  .check p{color:var(--muted);font-size:14px}
+
+  /* FAQ */
+  .faq{max-width:780px}
+  details{border-bottom:1px solid var(--border)}
+  summary{list-style:none;cursor:pointer;padding:22px 0;font-weight:700;font-size:17px;display:flex;justify-content:space-between;gap:16px;align-items:center}
+  summary::-webkit-details-marker{display:none}
+  summary::after{content:"+";font-family:var(--display);font-size:32px;color:var(--lime);line-height:1;transition:transform .2s}
+  details[open] summary::after{transform:rotate(45deg)}
+  details p{color:var(--muted);padding:0 0 22px;font-size:15px;max-width:680px}
+
+  /* CTA */
+  .cta{padding:0 0 96px}
+  .cta-box{background:var(--lime);color:var(--on-lime);border-radius:28px;padding:64px 48px;display:grid;grid-template-columns:auto 1fr auto;gap:36px;align-items:center;position:relative;overflow:hidden}
+  .cta-box::after{content:"8";position:absolute;right:20%;bottom:-40%;font-family:var(--display);font-size:420px;line-height:1;color:#000;opacity:.06;pointer-events:none}
+  .cta-box img{width:110px;height:110px;border-radius:24px;box-shadow:0 12px 30px rgba(0,0,0,.25)}
+  .cta-box h2{font-size:clamp(40px,5.5vw,64px);margin-bottom:8px}
+  .cta-box p{font-weight:500;font-size:16px;opacity:.8}
+  .btn-dark{background:#111;color:var(--lime);padding:18px 30px;font-size:17px;position:relative;z-index:1}
+  .btn-dark:hover{transform:translateY(-2px);box-shadow:0 12px 30px rgba(0,0,0,.3)}
+  .cta-box .btn-meta{color:#111;opacity:.65;text-align:center}
+
+  footer{border-top:1px solid var(--border);padding:32px 0;color:var(--faint);font-size:13px}
+  footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;align-items:center}
+
+  /* Floating mobile download */
+  .fab{display:none}
+
+  @media (max-width:960px){
+    .hero .wrap{grid-template-columns:1fr;gap:48px}
+    .hero{padding:48px 0 72px}
+    .features{grid-template-columns:1fr 1fr}
+    .feat,.feat.wide{grid-column:span 1}
+    .steps{grid-template-columns:1fr 1fr}
+    .privacy{grid-template-columns:1fr;gap:36px}
+    .stats .wrap{grid-template-columns:1fr 1fr}
+    .stat:nth-child(2){border-right:0}
+    .stat:nth-child(-n+2){border-bottom:1px solid var(--border)}
+    .cta-box{grid-template-columns:1fr;text-align:left;padding:44px 28px}
+  }
+  @media (max-width:640px){
+    .wrap{padding:0 16px}
+    .nav-links{display:none}
+    section{padding:72px 0}
+    .features,.steps{grid-template-columns:1fr}
+    .phone{width:270px;transform:none}
+    .screen{height:540px}
+    .btn-primary{width:100%}
+    .stat{padding:22px 14px}
+    .stat b{font-size:36px}
+    .cta-box .btn-dark{width:100%}
+    .fab{display:flex;position:fixed;left:16px;right:16px;bottom:16px;z-index:30;opacity:0;pointer-events:none;transform:translateY(20px);transition:.25s}
+    .fab.show{opacity:1;pointer-events:auto;transform:none}
+    body{padding-bottom:0}
+  }
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-dl" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" d="M12 3v12m0 0-5-5m5 5 5-5M4 19h16"/></symbol>
+  <symbol id="i-android" viewBox="0 0 24 24"><path fill="currentColor" d="M17.6 9.48 19.44 6.3a.38.38 0 0 0-.66-.38l-1.86 3.22a11.4 11.4 0 0 0-9.84 0L5.22 5.92a.38.38 0 0 0-.66.38L6.4 9.48A10.8 10.8 0 0 0 1 18h22a10.8 10.8 0 0 0-5.4-8.52ZM7 15.25a1.25 1.25 0 1 1 0-2.5 1.25 1.25 0 0 1 0 2.5Zm10 0a1.25 1.25 0 1 1 0-2.5 1.25 1.25 0 0 1 0 2.5Z"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" d="m5 12.5 4.5 4.5L19 7.5"/></symbol>
+  <symbol id="i-cal" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4.5" width="18" height="16" rx="3"/><path d="M3 9.5h18M8 2.5v4M16 2.5v4"/><circle cx="15.5" cy="15.5" r="3"/><path d="M15.5 14.2v1.4l.9.8"/></g></symbol>
+  <symbol id="i-users" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c0-3.6 2.9-6 6.5-6s6.5 2.4 6.5 6"/><path d="M16 4.6a3.5 3.5 0 0 1 0 6.8M18 14.3c2.1.7 3.5 2.8 3.5 5.7"/></g></symbol>
+  <symbol id="i-spray" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 10h6l1 3v7a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1v-7l1-3ZM8 10V6h4v4M12 6h3l1 2"/><path d="M19 4.5h.01M21 7h.01M19 9.5h.01"/></g></symbol>
+  <symbol id="i-cart" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 3.5h2.6l2.3 11.2a1.5 1.5 0 0 0 1.5 1.2h8.7a1.5 1.5 0 0 0 1.4-1.1L21 7.5H6"/><circle cx="9.5" cy="20" r="1.4"/><circle cx="17.5" cy="20" r="1.4"/></g></symbol>
+  <symbol id="i-shield" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.5 4 5.5v6c0 5 3.4 8.7 8 10 4.6-1.3 8-5 8-10v-6l-8-3Z"/><path d="m8.5 12 2.5 2.5 4.5-5"/></g></symbol>
+  <symbol id="i-cut" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><path d="M8.2 8.2 20 20M8.2 15.8 20 4"/></g></symbol>
+  <symbol id="i-phone" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="2.5" width="12" height="19" rx="2.5"/><path d="M11 18h2"/></g></symbol>
+  <symbol id="i-wifi-off" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 3 18 18M8.5 16.5a5 5 0 0 1 7 0M5 13a10 10 0 0 1 4.2-2.4M19 13a10 10 0 0 0-2-1.5M2 9.5a15 15 0 0 1 4.3-2.8M22 9.5A15 15 0 0 0 11 5.6"/><path d="M12 20h.01"/></g></symbol>
+  <symbol id="i-lock" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4.5" y="10.5" width="15" height="11" rx="2.5"/><path d="M8 10.5V7a4 4 0 0 1 8 0v3.5"/></g></symbol>
+  <symbol id="i-info" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9.5"/><path d="M12 11v6M12 7.5h.01"/></g></symbol>
+</svg>
+
+<nav>
+  <div class="wrap">
+    <a href="#" class="brand"><img src="icon.png" alt=""> CLUBE STUDIO <span class="lime">8</span></a>
+    <div class="nav-links">
+      <a href="#recursos">Recursos</a>
+      <a href="#instalar">Como instalar</a>
+      <a href="#duvidas">Dúvidas</a>
+    </div>
+    <a href="ClubeStudio8.apk" download class="btn btn-primary btn-sm"><svg width="16" height="16"><use href="#i-dl"/></svg>Baixar</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <div>
+      <span class="tag"><span class="dot"></span>App oficial da barbearia</span>
+      <h1>A barbearia <span class="lime">inteira</span><br>na <span class="bar">palma da mão</span></h1>
+      <p class="lead">Agenda, clientes, rotinas de limpeza, lista de compras e segurança com lâminas. <strong>Tudo num app só, feito sob medida para a Clube Studio 8.</strong></p>
+      <a href="ClubeStudio8.apk" download class="btn btn-primary" id="hero-dl">
+        <svg width="22" height="22"><use href="#i-android"/></svg>
+        Baixar APK para Android
+      </a>
+      <span class="btn-meta">Versão 2.0.0 · cerca de 54 MB · grátis</span>
+      <div class="hero-points">
+        <span><svg width="16" height="16"><use href="#i-check"/></svg>Funciona sem internet</span>
+        <span><svg width="16" height="16"><use href="#i-check"/></svg>Sem login nem cadastro</span>
+        <span><svg width="16" height="16"><use href="#i-check"/></svg>Dados só no seu celular</span>
+      </div>
+    </div>
+
+    <div aria-hidden="true">
+      <div class="phone">
+        <div class="screen">
+          <div class="s-head">
+            <div class="s-logo"><svg width="18" height="18"><use href="#i-cut"/></svg></div>
+            <div><div class="s-brand">CLUBE STUDIO <span class="lime">8</span></div><div class="s-title">Agenda</div></div>
+          </div>
+          <div class="s-strip"></div>
+          <div class="s-days">
+            <div class="s-day">QUI<b>12</b></div>
+            <div class="s-day on">SEX<b>13</b></div>
+            <div class="s-day">SÁB<b>14</b></div>
+            <div class="s-day">SEG<b>16</b></div>
+            <div class="s-day">TER<b>17</b></div>
+          </div>
+          <div class="s-list">
+            <div class="s-item"><div class="s-time">09:00</div><div class="s-name">Rafael Souza<small>Corte + barba</small></div><span class="chip ok">Compareceu</span></div>
+            <div class="s-item"><div class="s-time">10:00</div><div class="s-name">Lucas Pereira<small>Corte degradê</small></div><span class="chip ok">Compareceu</span></div>
+            <div class="s-item"><div class="s-time">11:00</div><div class="s-name">Bruno Lima<small>Barba</small></div><span class="chip wa">Lembrete enviado</span></div>
+            <div class="s-item"><div class="s-time">14:00</div><div class="s-name">Vaga livre<small>Oferecer para a lista</small></div><span class="chip free">Livre</span></div>
+            <div class="s-item"><div class="s-time">15:00</div><div class="s-name">Diego Martins<small>Corte social</small></div><span class="chip wa">Lembrete enviado</span></div>
+            <div class="s-item"><div class="s-time">16:30</div><div class="s-name">Thiago Alves<small>Corte + sobrancelha</small></div><span class="chip wa">Lembrete enviado</span></div>
+          </div>
+          <div class="s-menu">
+            <div class="on"><svg width="18" height="18"><use href="#i-cal"/></svg>Agenda</div>
+            <div><svg width="18" height="18"><use href="#i-users"/></svg>Clientes</div>
+            <div><svg width="18" height="18"><use href="#i-spray"/></svg>Limpeza</div>
+            <div><svg width="18" height="18"><use href="#i-cart"/></svg>Compras</div>
+            <div><svg width="18" height="18"><use href="#i-shield"/></svg>Segurança</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="stats">
+  <div class="wrap">
+    <div class="stat"><b>5 telas</b><span>para o dia a dia da barbearia</span></div>
+    <div class="stat"><b>1 toque</b><span>para lembrar o cliente no WhatsApp</span></div>
+    <div class="stat"><b>0 internet</b><span>necessária para usar</span></div>
+    <div class="stat"><b>R$ 0</b><span>sem mensalidade, sem conta</span></div>
+  </div>
+</div>
+
+<section id="recursos">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="eyebrow">O que o app faz</div>
+      <h2>Menos falta, menos papel,<br><span class="lime">mais cadeira ocupada</span></h2>
+      <p>Cada tela resolve um problema real da rotina da barbearia, do primeiro cliente do dia até o fechamento.</p>
+    </div>
+
+    <div class="features">
+      <article class="feat wide">
+        <div class="ico"><svg width="26" height="26"><use href="#i-cal"/></svg></div>
+        <h3>Agenda</h3>
+        <p>Veja os horários do dia numa faixa e agende para hoje ou qualquer outra data em segundos.</p>
+        <ul>
+          <li>Lembrete pronto no WhatsApp com um toque</li>
+          <li>Marque compareceu, falta, desmarcou ou remarcou</li>
+          <li>Ofereça a vaga livre e recupere o horário</li>
+          <li>Resumo do período para copiar e compartilhar</li>
+        </ul>
+      </article>
+      <article class="feat wide">
+        <div class="ico"><svg width="26" height="26"><use href="#i-users"/></svg></div>
+        <h3>Clientes</h3>
+        <p>A carteira de clientes organizada, com busca rápida e histórico de cada um.</p>
+        <ul>
+          <li>Nome, telefone e ligação direto do app</li>
+          <li>Contagem de visitas e de faltas</li>
+          <li>Autorização para lembretes, de acordo com a LGPD</li>
+        </ul>
+      </article>
+      <article class="feat">
+        <div class="ico"><svg width="26" height="26"><use href="#i-spray"/></svg></div>
+        <h3>Limpeza</h3>
+        <p>Rotinas de abertura, a cada cliente, meio do dia e fechamento, mais a limpeza semanal das máquinas. Com alarme, para nada ficar para trás.</p>
+      </article>
+      <article class="feat">
+        <div class="ico"><svg width="26" height="26"><use href="#i-cart"/></svg></div>
+        <h3>Compras</h3>
+        <p>Acabou a lâmina, o talco ou a toalha? Anote na hora com atalhos e nunca mais esqueça nada no fornecedor.</p>
+      </article>
+      <article class="feat">
+        <div class="ico"><svg width="26" height="26"><use href="#i-shield"/></svg></div>
+        <h3>Segurança</h3>
+        <p>Processos com lâminas, guia de descarte conforme a Lei 12.305/2010 e a RDC Anvisa 222/2018, e um assistente de IA com o prompt pronto.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section id="instalar" class="steps-bg">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="eyebrow">Como instalar</div>
+      <h2>Pronto para usar em <span class="lime">2 minutos</span></h2>
+      <p>O app é instalado direto pelo arquivo APK, sem passar pela Play Store. É só seguir os passos.</p>
+    </div>
+    <div class="steps">
+      <div class="step"><h3>Baixe o APK</h3><p>Toque em “Baixar APK” no celular Android. O arquivo tem cerca de 54 MB, então vale usar o Wi-Fi.</p></div>
+      <div class="step"><h3>Abra o arquivo</h3><p>Quando o download terminar, toque na notificação ou procure “ClubeStudio8.apk” na pasta Downloads.</p></div>
+      <div class="step"><h3>Permita a instalação</h3><p>Se o Android pedir, toque em “Configurações” e ative “Permitir desta fonte”. Depois volte e toque em “Instalar”.</p></div>
+      <div class="step"><h3>Abra e use</h3><p>O app aparece na tela inicial com o ícone da Clube Studio 8. Na primeira vez, permita as notificações para os alarmes funcionarem.</p></div>
+    </div>
+    <div class="note">
+      <svg width="22" height="22"><use href="#i-info"/></svg>
+      <div>O aviso de “app de fonte desconhecida” é normal para qualquer app instalado fora da Play Store. <strong>O app não pede acesso a fotos, contatos nem localização</strong>, só a notificações e alarmes para as rotinas de limpeza.</div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap privacy">
+    <div class="big">Seus dados<span>ficam com você.</span></div>
+    <div class="checks">
+      <div class="check"><div class="ico"><svg width="22" height="22"><use href="#i-phone"/></svg></div><div><b>Tudo salvo no celular</b><p>Clientes, agenda e rotinas ficam guardados no próprio aparelho. Nenhum servidor, nenhuma nuvem.</p></div></div>
+      <div class="check"><div class="ico"><svg width="22" height="22"><use href="#i-wifi-off"/></svg></div><div><b>Funciona offline</b><p>Sem sinal na barbearia? Sem problema. A internet só é usada quando você mesmo abre o WhatsApp.</p></div></div>
+      <div class="check"><div class="ico"><svg width="22" height="22"><use href="#i-lock"/></svg></div><div><b>Sem login, sem senha</b><p>Nada de criar conta ou lembrar senha. Abriu, está usando.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<section id="duvidas" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="eyebrow">Dúvidas</div>
+      <h2>Perguntas <span class="lime">frequentes</span></h2>
+    </div>
+    <div class="faq">
+      <details><summary>Funciona no iPhone?</summary><p>Por enquanto não. O app está disponível apenas para Android, instalado pelo arquivo APK desta página.</p></details>
+      <details><summary>O app é seguro?</summary><p>Sim. Ele não envia seus dados para lugar nenhum e só pede permissão de notificações e alarmes. O aviso do Android aparece porque o app não vem da Play Store, e não porque haja algum risco.</p></details>
+      <details><summary>Preciso pagar alguma coisa?</summary><p>Não. O app é gratuito, sem mensalidade e sem anúncios.</p></details>
+      <details><summary>Se eu trocar de celular, perco os dados?</summary><p>Como tudo fica guardado no próprio aparelho, os dados não passam sozinhos para outro celular. Desinstalar o app também apaga as informações, então evite fazer isso.</p></details>
+      <details><summary>Como funciona o lembrete pelo WhatsApp?</summary><p>Na agenda, toque no horário do cliente e escolha “Enviar lembrete”. O WhatsApp abre com a mensagem pronta, é só enviar. O lembrete só aparece para clientes que autorizaram receber mensagens.</p></details>
+      <details><summary>O alarme toca com o app fechado?</summary><p>Sim. Na primeira vez que você ativar um alarme, o app pede permissão de notificações e de “Alarmes e lembretes”. Com elas ativas, o alarme toca mesmo com o app fechado e a tela bloqueada.</p></details>
+    </div>
+  </div>
+</section>
+
+<div class="cta">
+  <div class="wrap">
+    <div class="cta-box">
+      <img src="icon.png" alt="Ícone do app Clube Studio 8">
+      <div>
+        <h2>Leve a Clube Studio 8 no bolso</h2>
+        <p>Grátis para Android. Instale agora e organize o dia de hoje.</p>
+      </div>
+      <div>
+        <a href="ClubeStudio8.apk" download class="btn btn-dark"><svg width="22" height="22"><use href="#i-dl"/></svg>Baixar APK</a>
+        <span class="btn-meta">v2.0.0 · ~54 MB</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="wrap">
+    <span>© <span id="ano">2026</span> Clube Studio 8 · Barbearia</span>
+    <span>App para Android · versão 2.0.0</span>
+  </div>
+</footer>
+
+<a href="ClubeStudio8.apk" download class="btn btn-primary fab" id="fab"><svg width="20" height="20"><use href="#i-android"/></svg>Baixar APK para Android</a>
+
+<script>
+  document.getElementById('ano').textContent = new Date().getFullYear();
+  var hero = document.getElementById('hero-dl'), fab = document.getElementById('fab');
+  if ('IntersectionObserver' in window) {
+    new IntersectionObserver(function (e) {
+      fab.classList.toggle('show', !e[0].isIntersecting && window.scrollY > 200);
+    }).observe(hero);
+  }
+</script>
+</body>
+</html>
