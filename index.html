@@ -217,6 +217,13 @@
   .lado dt{color:var(--faint);font-weight:700;font-size:12px;letter-spacing:.08em;text-transform:uppercase;padding-top:2px}
   .lado dd{color:var(--text);font-weight:500}
   .lado .btn{width:100%}
+  .lado .codigo{margin-top:10px}
+  .btn-gh{background:var(--surface2);color:var(--text);padding:13px 20px;font-size:14.5px;border:1px solid var(--border)}
+  .btn-gh:hover{border-color:var(--lime);transform:translateY(-2px)}
+  .open .links{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+  .open .links .btn{padding:10px 16px;font-size:13.5px;border-radius:10px}
+  footer a{color:var(--muted);text-decoration:underline;text-underline-offset:3px}
+  footer a:hover{color:var(--lime)}
 
   /* Features */
   .app-sec{border-top:1px solid var(--border)}
@@ -372,6 +379,7 @@
   <symbol id="i-code" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m8 7-5 5 5 5M16 7l5 5-5 5M13.5 4l-3 16"/></g></symbol>
   <symbol id="i-cap" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 9.5 12 5l10 4.5-10 4.5L2 9.5Z"/><path d="M6 11.3v4.4c1.6 1.5 3.7 2.3 6 2.3s4.4-.8 6-2.3v-4.4M22 9.5v5"/></g></symbol>
   <symbol id="i-tag" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12.2V4.5A1.5 1.5 0 0 1 4.5 3h7.7l8.3 8.3a1.5 1.5 0 0 1 0 2.1l-7.1 7.1a1.5 1.5 0 0 1-2.1 0L3 12.2Z"/><circle cx="8" cy="8" r="1.5"/></g></symbol>
+  <symbol id="i-github" viewBox="0 0 24 24"><path fill="currentColor" d="M12 1.5a10.5 10.5 0 0 0-3.3 20.5c.5.1.7-.2.7-.5v-1.9c-2.9.6-3.5-1.2-3.5-1.2-.5-1.2-1.2-1.6-1.2-1.6-1-.6.1-.6.1-.6 1 .1 1.6 1.1 1.6 1.1.9 1.6 2.5 1.1 3.1.9.1-.7.4-1.1.7-1.4-2.3-.3-4.8-1.2-4.8-5.2 0-1.1.4-2.1 1.1-2.8-.1-.3-.5-1.4.1-2.8 0 0 .9-.3 2.9 1.1a10 10 0 0 1 5.3 0c2-1.4 2.9-1.1 2.9-1.1.6 1.4.2 2.5.1 2.8.7.7 1.1 1.7 1.1 2.8 0 4-2.5 4.9-4.8 5.2.4.3.7 1 .7 2v2.9c0 .3.2.6.7.5A10.5 10.5 0 0 0 12 1.5Z"/></symbol>
   <symbol id="i-heart" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" d="M12 20s-7.5-4.4-7.5-10A4.3 4.3 0 0 1 12 7.4 4.3 4.3 0 0 1 19.5 10c0 5.6-7.5 10-7.5 10Z"/></symbol>
 </svg>
 
@@ -535,6 +543,7 @@
           <dt>Versão</dt><dd>2.0.0 · ~54 MB · código aberto (MIT)</dd>
         </dl>
         <a href="ClubeStudio8.apk" download class="btn btn-primary"><svg width="20" height="20"><use href="#i-android"/></svg>Baixar Clube Studio 8</a>
+        <a href="https://github.com/natan-marinho/ClubeStudio8" target="_blank" rel="noopener" class="btn btn-gh codigo"><svg width="18" height="18"><use href="#i-github"/></svg>Ver o código no GitHub</a>
       </article>
       <article class="lado revela" data-n="02">
         <div class="topo"><img src="postsave-icon.png" alt=""><div><span>App 2 · Conteúdo</span><h3>PostSave</h3></div></div>
@@ -546,11 +555,13 @@
           <dt>Versão</dt><dd>1.1.0 · ~<span data-mb>53</span> MB · código aberto (MIT)</dd>
         </dl>
         <a href="PostSave.apk" download class="btn btn-primary"><svg width="20" height="20"><use href="#i-android"/></svg>Baixar PostSave</a>
+        <a href="https://github.com/natan-marinho/PostSave" target="_blank" rel="noopener" class="btn btn-gh codigo"><svg width="18" height="18"><use href="#i-github"/></svg>Ver o código no GitHub</a>
       </article>
     </div>
     <div class="open revela">
       <svg width="30" height="30"><use href="#i-code"/></svg>
-      <div><b>Os dois apps são nativos e de código aberto</b><p>Clube Studio 8 e PostSave são feitos em React Native com Expo e publicados sob a licença MIT: qualquer pessoa pode usar, estudar, modificar e distribuir.</p></div>
+      <div><b>Os dois apps são nativos e de código aberto</b><p>Clube Studio 8 e PostSave são feitos em React Native com Expo e publicados sob a licença MIT: qualquer pessoa pode usar, estudar, modificar e distribuir.</p>
+        <div class="links"><a href="https://github.com/natan-marinho/ClubeStudio8" target="_blank" rel="noopener" class="btn btn-gh"><svg width="18" height="18"><use href="#i-github"/></svg>Código do Clube Studio 8</a><a href="https://github.com/natan-marinho/PostSave" target="_blank" rel="noopener" class="btn btn-gh"><svg width="18" height="18"><use href="#i-github"/></svg>Código do PostSave</a></div></div>
     </div>
   </div>
 </section>
@@ -692,7 +703,7 @@
       <details><summary>Por que este site existe?</summary><p>Os apps e este site são um trabalho para a faculdade, sem fins lucrativos. Os downloads são gratuitos, sem anúncios e sem coleta de dados.</p></details>
       <details><summary>O PostSave envia minhas fotos para algum lugar?</summary><p>Não. As fotos ficam guardadas dentro do app. Elas só saem do celular quando você mesmo compartilha uma foto com o ChatGPT, o Instagram ou outro app.</p></details>
       <details><summary>Como a foto vai para o ChatGPT?</summary><p>No PostSave, na etapa Legenda, toque em “Criar legenda com IA”. Escolha o prompt, preencha os campos e toque em “Copiar e enviar foto”; depois escolha o ChatGPT na lista de apps. A foto aparece no chat; é só colar o prompt e enviar. Você precisa ter o app do ChatGPT instalado.</p></details>
-      <details><summary>Os apps são mesmo open source?</summary><p>Sim, os dois. O código do Clube Studio 8 e do PostSave é publicado sob a licença MIT, que permite usar, estudar, modificar e distribuir livremente.</p></details>
+      <details><summary>Os apps são mesmo open source?</summary><p>Sim, os dois. O código do Clube Studio 8 e do PostSave é publicado sob a licença MIT, que permite usar, estudar, modificar e distribuir livremente. O código está no GitHub: <a href="https://github.com/natan-marinho/ClubeStudio8" target="_blank" rel="noopener" class="lime">Clube Studio 8</a> e <a href="https://github.com/natan-marinho/PostSave" target="_blank" rel="noopener" class="lime">PostSave</a>.</p></details>
       <details><summary>Funciona no iPhone?</summary><p>Por enquanto não. Os dois apps estão disponíveis apenas para Android, instalados pelos arquivos APK desta página.</p></details>
       <details><summary>Se eu trocar de celular, perco os dados?</summary><p>Como tudo fica no próprio aparelho, os dados não passam sozinhos para outro celular. Desinstalar o app também apaga as informações. No PostSave, use “Salvar fotos na galeria” para guardar as fotos fora do app.</p></details>
     </div>
@@ -723,7 +734,7 @@
 <footer>
   <div class="wrap">
     <span>© <span id="ano">2026</span> Clube Studio 8 · Projeto acadêmico, sem fins lucrativos · <button type="button" id="ver-aviso">ver aviso</button></span>
-    <span>Clube Studio 8 v2.0.0 · PostSave v1.1.0 · ambos open source (MIT)</span>
+    <span>Código aberto (MIT): <a href="https://github.com/natan-marinho/ClubeStudio8" target="_blank" rel="noopener">Clube Studio 8</a> · <a href="https://github.com/natan-marinho/PostSave" target="_blank" rel="noopener">PostSave</a></span>
   </div>
 </footer>
 
