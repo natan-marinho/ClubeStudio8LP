@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Apps Clube Studio 8</title>
-<meta name="description" content="Dois apps gratuitos para Android: Clube Studio 8, para o dia a dia da barbearia, e PostSave, para organizar os posts e os prompts de IA. Projeto acadêmico, sem fins lucrativos.">
+<meta name="description" content="Dois apps gratuitos para Android: Clube Studio 8, para o dia a dia da barbearia, e PostSave, para organizar os posts do Instagram com prompts de IA feitos para barbearia. Projeto acadêmico, sem fins lucrativos.">
 <meta property="og:title" content="Apps Clube Studio 8 · Clube Studio 8 e PostSave">
 <meta property="og:description" content="Gestão da barbearia e organização dos posts, em dois apps gratuitos para Android. Projeto acadêmico, sem fins lucrativos.">
 <meta property="og:image" content="icon.png">
@@ -72,6 +72,7 @@
   /* Visível por padrão (fica escondido atrás da intro); a animação parte do invisível. */
   .pronto .entra{animation:entra .8s var(--ease) both}
   @keyframes entra{from{opacity:0;transform:translateY(28px)}}
+  .fim .entra{animation:none}
   .pronto .entra.d1{animation-delay:.08s}.pronto .entra.d2{animation-delay:.18s}.pronto .entra.d3{animation-delay:.28s}.pronto .entra.d4{animation-delay:.4s}.pronto .entra.d5{animation-delay:.52s}
   .revela{opacity:0;transform:translateY(34px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
   .revela.visto{opacity:1;transform:none}
@@ -171,6 +172,9 @@
   .s-menu .pill{width:46px;height:24px;border-radius:12px;display:grid;place-items:center}
   .s-menu div.on .pill{background:var(--lime);color:var(--on-lime)}
   /* PostSave mockup */
+  .s-seg{display:flex;gap:3px;margin:12px 12px 4px;padding:3px;background:var(--surface);border:1px solid var(--border);border-radius:10px}
+  .s-seg span{flex:1;text-align:center;font-size:9px;font-weight:800;padding:6px 0;border-radius:7px;color:var(--muted)}
+  .s-seg span.on{background:var(--lime);color:var(--on-lime)}
   .s-chips{display:flex;gap:5px;padding:12px 12px 4px}
   .s-chips span{font-size:9.5px;font-weight:700;padding:5px 9px;border-radius:99px;border:1.5px solid var(--graphite);color:var(--text);white-space:nowrap}
   .s-chips span.on{background:var(--lime);border-color:var(--lime);color:var(--on-lime)}
@@ -367,6 +371,7 @@
   <symbol id="i-paste" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="4.5" width="14" height="17" rx="2"/><path d="M9 4.5V3.5a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v1M9 11h6M9 15h4"/></g></symbol>
   <symbol id="i-code" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m8 7-5 5 5 5M16 7l5 5-5 5M13.5 4l-3 16"/></g></symbol>
   <symbol id="i-cap" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 9.5 12 5l10 4.5-10 4.5L2 9.5Z"/><path d="M6 11.3v4.4c1.6 1.5 3.7 2.3 6 2.3s4.4-.8 6-2.3v-4.4M22 9.5v5"/></g></symbol>
+  <symbol id="i-tag" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12.2V4.5A1.5 1.5 0 0 1 4.5 3h7.7l8.3 8.3a1.5 1.5 0 0 1 0 2.1l-7.1 7.1a1.5 1.5 0 0 1-2.1 0L3 12.2Z"/><circle cx="8" cy="8" r="1.5"/></g></symbol>
   <symbol id="i-heart" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" d="M12 20s-7.5-4.4-7.5-10A4.3 4.3 0 0 1 12 7.4 4.3 4.3 0 0 1 19.5 10c0 5.6-7.5 10-7.5 10Z"/></symbol>
 </svg>
 
@@ -390,11 +395,11 @@
     <div class="eyebrow">Aviso</div>
     <h2 id="aviso-titulo">Trabalho para <span class="lime">faculdade</span></h2>
     <p id="aviso-texto">Este site e os apps <strong>Clube Studio 8</strong> e <strong>PostSave</strong> foram desenvolvidos como <strong>trabalho acadêmico, sem fins lucrativos</strong>.</p>
-    <p>Os downloads são gratuitos, não há anúncios e nenhum dado é coletado.</p>
+    <p>Os dois apps têm <strong>código aberto</strong> (licença MIT). Os downloads são gratuitos, não há anúncios e nenhum dado é coletado.</p>
     <div class="aviso-selos">
       <span><svg width="14" height="14"><use href="#i-cap"/></svg>Projeto acadêmico</span>
       <span><svg width="14" height="14"><use href="#i-heart"/></svg>Sem fins lucrativos</span>
-      <span><svg width="14" height="14"><use href="#i-code"/></svg>PostSave open source</span>
+      <span><svg width="14" height="14"><use href="#i-code"/></svg>Código aberto</span>
     </div>
     <button class="btn btn-primary" id="aviso-ok" type="button"><svg width="18" height="18"><use href="#i-check"/></svg>Entendi, ver os apps</button>
   </div>
@@ -419,20 +424,20 @@
     <div>
       <span class="tag entra d1"><span class="dot"></span>2 apps grátis para Android</span>
       <h1 class="entra d2">Dois apps.<br>Uma barbearia <span class="bar lime">no controle</span></h1>
-      <p class="lead entra d3"><strong>Clube Studio 8</strong> cuida da agenda, dos clientes e das rotinas. <strong>PostSave</strong> organiza as fotos e os prompts de IA dos posts. Use um, ou os dois.</p>
+      <p class="lead entra d3"><strong>Clube Studio 8</strong> cuida da agenda, dos clientes e das rotinas. <strong>PostSave</strong> organiza os posts do Instagram e cria as legendas com IA. Use um, ou os dois.</p>
 
       <div class="escolha entra d4" id="hero-dl">
         <a class="app-card" href="#clube">
           <div class="topo"><img src="icon.png" alt=""><div><span class="tipo">App 1 · Gestão</span><b>Clube Studio 8</b></div></div>
           <p>Agenda, clientes, limpeza, compras e segurança da barbearia.</p>
           <span class="btn btn-primary" data-dl="ClubeStudio8.apk"><svg width="18" height="18"><use href="#i-android"/></svg>Baixar APK</span>
-          <span class="btn-meta">v2.0.0 · ~54 MB</span>
+          <span class="btn-meta">v2.0.0 · ~54 MB · open source</span>
         </a>
         <a class="app-card" href="#postsave">
           <div class="topo"><img src="postsave-icon.png" alt=""><div><span class="tipo">App 2 · Conteúdo</span><b>PostSave</b></div></div>
-          <p>Pastas de posts com fotos, legenda e prompts prontos para o chat de IA.</p>
+          <p>Posts do Instagram em pastas, com 13 prompts de IA feitos para barbearia.</p>
           <span class="btn btn-primary" data-dl="PostSave.apk"><svg width="18" height="18"><use href="#i-android"/></svg>Baixar APK</span>
-          <span class="btn-meta">v1.0.0 · ~<span data-mb>53</span> MB · open source</span>
+          <span class="btn-meta">v1.1.0 · ~<span data-mb>53</span> MB · open source</span>
         </a>
       </div>
 
@@ -440,6 +445,7 @@
         <span><svg width="16" height="16"><use href="#i-check"/></svg>Sem login nem cadastro</span>
         <span><svg width="16" height="16"><use href="#i-check"/></svg>Dados só no seu celular</span>
         <span><svg width="16" height="16"><use href="#i-check"/></svg>Sem anúncios</span>
+        <span><svg width="16" height="16"><use href="#i-check"/></svg>Código aberto (MIT)</span>
       </div>
     </div>
 
@@ -481,15 +487,15 @@
         <div class="screen">
           <div class="s-head">
             <div class="s-logo"><svg width="17" height="17"><use href="#i-save"/></svg></div>
-            <div><div class="s-brand">POST <span class="lime">SAVE</span></div><div class="s-title">Pastas de posts</div></div>
+            <div><div class="s-brand">POST <span class="lime">SAVE</span></div><div class="s-title">Posts</div></div>
           </div>
           <div class="s-strip"></div>
-          <div class="s-chips"><span class="on">Todas · 4</span><span>Rascunho</span><span>Pronto</span></div>
+          <div class="s-seg"><span class="on">A fazer 2</span><span>Prontos 1</span><span>Postados 1</span></div>
           <div class="s-grid">
-            <div class="s-pasta"><div class="s-capa g1"><svg width="26" height="26"><use href="#i-cut"/></svg><span class="s-st" style="background:var(--lime)">Pronto</span><span class="s-n">5</span></div><p>Antes e depois<small>Com legenda</small></p></div>
-            <div class="s-pasta"><div class="s-capa g2"><svg width="26" height="26"><use href="#i-image"/></svg><span class="s-st" style="background:var(--warn)">Rascunho</span><span class="s-n">3</span></div><p>Promoção de sexta<small>Sem legenda</small></p></div>
-            <div class="s-pasta"><div class="s-capa g3"><svg width="26" height="26"><use href="#i-users"/></svg><span class="s-st" style="background:var(--info)">Postado</span></div><p>Equipe<small>Com legenda</small></p></div>
-            <div class="s-pasta"><div class="s-capa g4"><svg width="26" height="26"><use href="#i-image"/></svg><span class="s-st" style="background:var(--warn)">Rascunho</span></div><p>Novos produtos<small>Sem legenda</small></p></div>
+            <div class="s-pasta"><div class="s-capa g1"><svg width="26" height="26"><use href="#i-cut"/></svg></div><p>Antes e depois<small>Corte · 5 fotos</small></p></div>
+            <div class="s-pasta"><div class="s-capa g2"><svg width="26" height="26"><use href="#i-tag"/></svg></div><p>Combo de sexta<small>Promoção · 3 fotos</small></p></div>
+            <div class="s-pasta"><div class="s-capa g3"><svg width="26" height="26"><use href="#i-users"/></svg></div><p>Novo barbeiro<small>Equipe · 2 fotos</small></p></div>
+            <div class="s-pasta"><div class="s-capa g4"><svg width="26" height="26"><use href="#i-image"/></svg></div><p>Pomada nova<small>Produto · sem fotos</small></p></div>
           </div>
           <div class="s-menu">
             <div class="on"><span class="pill"><svg width="15" height="15"><use href="#i-folder"/></svg></span>Posts</div>
@@ -526,7 +532,7 @@
           <dt>Telas</dt><dd>Agenda, Clientes, Limpeza, Compras e Segurança</dd>
           <dt>Destaque</dt><dd>Lembrete do horário pelo WhatsApp com um toque</dd>
           <dt>Permissões</dt><dd>Notificações e alarmes</dd>
-          <dt>Versão</dt><dd>2.0.0 · ~54 MB</dd>
+          <dt>Versão</dt><dd>2.0.0 · ~54 MB · código aberto (MIT)</dd>
         </dl>
         <a href="ClubeStudio8.apk" download class="btn btn-primary"><svg width="20" height="20"><use href="#i-android"/></svg>Baixar Clube Studio 8</a>
       </article>
@@ -534,13 +540,17 @@
         <div class="topo"><img src="postsave-icon.png" alt=""><div><span>App 2 · Conteúdo</span><h3>PostSave</h3></div></div>
         <dl>
           <dt>Para quê</dt><dd>Preparar os posts das redes sociais</dd>
-          <dt>Telas</dt><dd>Posts (pastas de fotos) e Prompts de IA</dd>
-          <dt>Destaque</dt><dd>Foto + prompt direto para o ChatGPT</dd>
+          <dt>Telas</dt><dd>Posts (pastas em 3 etapas) e Prompts para barbearia</dd>
+          <dt>Destaque</dt><dd>Foto + prompt da barbearia direto para o ChatGPT</dd>
           <dt>Permissões</dt><dd>Fotos e câmera</dd>
-          <dt>Versão</dt><dd>1.0.0 · ~<span data-mb>53</span> MB · código aberto (MIT)</dd>
+          <dt>Versão</dt><dd>1.1.0 · ~<span data-mb>53</span> MB · código aberto (MIT)</dd>
         </dl>
         <a href="PostSave.apk" download class="btn btn-primary"><svg width="20" height="20"><use href="#i-android"/></svg>Baixar PostSave</a>
       </article>
+    </div>
+    <div class="open revela">
+      <svg width="30" height="30"><use href="#i-code"/></svg>
+      <div><b>Os dois apps são nativos e de código aberto</b><p>Clube Studio 8 e PostSave são feitos em React Native com Expo e publicados sob a licença MIT: qualquer pessoa pode usar, estudar, modificar e distribuir.</p></div>
     </div>
   </div>
 </section>
@@ -599,30 +609,29 @@
     <div class="sec-head revela">
       <div class="app-title"><img src="postsave-icon.png" alt=""><span class="num">APP 02</span></div>
       <h2>PostSave: cada post<br><span class="lime">na sua pasta</span></h2>
-      <p>Junte as fotos, a legenda e o prompt de cada post num lugar só. Na hora de postar, está tudo pronto e na ordem certa.</p>
+      <p>Cada post da barbearia passa por 3 etapas simples: fotos, legenda e postar. Nada de informação solta.</p>
     </div>
 
     <div class="features">
       <article class="feat wide revela">
         <div class="ico"><svg width="26" height="26"><use href="#i-folder"/></svg></div>
         <h3>Posts</h3>
-        <p>Uma pasta para cada post, com capa e status: rascunho, pronto ou postado.</p>
+        <p>Uma pasta para cada post (corte, barba, promoção, equipe, produto ou aviso), separadas em A fazer, Prontos e Postados.</p>
         <ul>
-          <li>Suba várias fotos da galeria ou tire na hora</li>
-          <li>Mude a ordem do carrossel e escolha a capa</li>
-          <li>Legenda guardada junto, pronta para copiar</li>
-          <li>Salve as fotos num álbum da galeria na hora de postar</li>
+          <li><span><b>1 Fotos:</b> galeria ou câmera, ordem do carrossel e capa</span></li>
+          <li><span><b>2 Legenda:</b> crie com IA e cole a resposta do chat</span></li>
+          <li><span><b>3 Postar:</b> salve no álbum, copie a legenda e abra o Instagram</span></li>
         </ul>
       </article>
       <article class="feat wide revela">
         <div class="ico"><svg width="26" height="26"><use href="#i-robot"/></svg></div>
         <h3>Prompts</h3>
-        <p>Sua biblioteca de prompts de IA, separada por categoria e com busca.</p>
+        <p>Prompts escritos para barbearia, com campos para preencher antes de copiar.</p>
         <ul>
-          <li>Já vem com 6 prompts: legenda, hashtags, arte de story e mais</li>
-          <li>Copie e abra o chat com um toque</li>
+          <li>13 prompts: legenda de corte, barba e promoção, Reels, hashtags locais, resposta a cliente e mais</li>
+          <li>O perfil da barbearia (bairro, WhatsApp, tom de voz) vai junto em todo prompt</li>
+          <li>Campos como nome do corte, preço e validade, sem editar o texto</li>
           <li>Funciona com ChatGPT, Gemini ou Claude</li>
-          <li>Os mais usados aparecem primeiro</li>
         </ul>
       </article>
     </div>
@@ -632,15 +641,10 @@
       <p>O mesmo jeito de "copiar o prompt e ir para o chat" do Clube Studio 8, agora com a foto junto.</p>
       <div class="passos">
         <div class="passo"><span class="ico" data-n="1"><svg width="24" height="24"><use href="#i-image"/></svg></span><b>Suba a foto</b><p>Escolha as fotos da galeria ou tire com a câmera dentro da pasta.</p></div>
-        <div class="passo"><span class="ico" data-n="2"><svg width="24" height="24"><use href="#i-copy"/></svg></span><b>Escolha o prompt</b><p>Toque na foto, em "Enviar ao chat" e no prompt. Ele é copiado.</p></div>
-        <div class="passo"><span class="ico" data-n="3"><svg width="24" height="24"><use href="#i-share"/></svg></span><b>Vá para o chat</b><p>Escolha o ChatGPT na lista. A foto chega lá e você cola o prompt.</p></div>
+        <div class="passo"><span class="ico" data-n="2"><svg width="24" height="24"><use href="#i-copy"/></svg></span><b>Escolha o prompt</b><p>Em "Criar legenda com IA", os prompts do tipo do post aparecem primeiro. Preencha os campos.</p></div>
+        <div class="passo"><span class="ico" data-n="3"><svg width="24" height="24"><use href="#i-share"/></svg></span><b>Vá para o chat</b><p>O prompt é copiado e a foto vai para o ChatGPT. É só colar e enviar.</p></div>
         <div class="passo"><span class="ico" data-n="4"><svg width="24" height="24"><use href="#i-paste"/></svg></span><b>Traga a resposta</b><p>Copie a legenda criada e toque em "Colar do chat" no PostSave.</p></div>
       </div>
-    </div>
-
-    <div class="open revela">
-      <svg width="30" height="30"><use href="#i-code"/></svg>
-      <div><b>Nativo e de código aberto</b><p>Feito em React Native com Expo e publicado sob a licença MIT: qualquer pessoa pode usar, estudar, modificar e distribuir.</p></div>
     </div>
   </div>
 </section>
@@ -687,8 +691,8 @@
       <details><summary>Os dois apps compartilham dados?</summary><p>Não. Cada app guarda as próprias informações no celular. Eles só têm a mesma identidade visual.</p></details>
       <details><summary>Por que este site existe?</summary><p>Os apps e este site são um trabalho para a faculdade, sem fins lucrativos. Os downloads são gratuitos, sem anúncios e sem coleta de dados.</p></details>
       <details><summary>O PostSave envia minhas fotos para algum lugar?</summary><p>Não. As fotos ficam guardadas dentro do app. Elas só saem do celular quando você mesmo compartilha uma foto com o ChatGPT, o Instagram ou outro app.</p></details>
-      <details><summary>Como a foto vai para o ChatGPT?</summary><p>No PostSave, toque na foto e em “Enviar ao chat com prompt”. Escolha o prompt (ele é copiado) e depois o ChatGPT na lista de apps. A foto aparece no chat; é só colar o prompt e enviar. Você precisa ter o app do ChatGPT instalado.</p></details>
-      <details><summary>O PostSave é mesmo open source?</summary><p>Sim. O código é publicado sob a licença MIT, que permite usar, estudar, modificar e distribuir livremente.</p></details>
+      <details><summary>Como a foto vai para o ChatGPT?</summary><p>No PostSave, na etapa Legenda, toque em “Criar legenda com IA”. Escolha o prompt, preencha os campos e toque em “Copiar e enviar foto”; depois escolha o ChatGPT na lista de apps. A foto aparece no chat; é só colar o prompt e enviar. Você precisa ter o app do ChatGPT instalado.</p></details>
+      <details><summary>Os apps são mesmo open source?</summary><p>Sim, os dois. O código do Clube Studio 8 e do PostSave é publicado sob a licença MIT, que permite usar, estudar, modificar e distribuir livremente.</p></details>
       <details><summary>Funciona no iPhone?</summary><p>Por enquanto não. Os dois apps estão disponíveis apenas para Android, instalados pelos arquivos APK desta página.</p></details>
       <details><summary>Se eu trocar de celular, perco os dados?</summary><p>Como tudo fica no próprio aparelho, os dados não passam sozinhos para outro celular. Desinstalar o app também apaga as informações. No PostSave, use “Salvar fotos na galeria” para guardar as fotos fora do app.</p></details>
     </div>
@@ -708,7 +712,7 @@
         </div>
         <div class="cta-app">
           <img src="postsave-icon.png" alt="Ícone do app PostSave">
-          <div><b>PostSave</b><small>Conteúdo · v1.0.0 · ~<span data-mb>53</span> MB</small></div>
+          <div><b>PostSave</b><small>Conteúdo · v1.1.0 · ~<span data-mb>53</span> MB</small></div>
           <a href="PostSave.apk" download class="btn btn-primary"><svg width="18" height="18"><use href="#i-dl"/></svg>Baixar</a>
         </div>
       </div>
@@ -719,7 +723,7 @@
 <footer>
   <div class="wrap">
     <span>© <span id="ano">2026</span> Clube Studio 8 · Projeto acadêmico, sem fins lucrativos · <button type="button" id="ver-aviso">ver aviso</button></span>
-    <span>Clube Studio 8 v2.0.0 · PostSave v1.0.0 (MIT)</span>
+    <span>Clube Studio 8 v2.0.0 · PostSave v1.1.0 · ambos open source (MIT)</span>
   </div>
 </footer>
 
@@ -775,6 +779,7 @@
     setTimeout(function () {
       intro.remove();
       body.classList.add('pronto');
+      setTimeout(function () { body.classList.add('fim'); }, 1600);
       abrirAviso();
     }, calmo ? 0 : 1000);
   }
